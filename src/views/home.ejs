@@ -1,0 +1,38 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main">
+  <section class="hero">
+    <h1><span class="hl">AI</span> for Our Village</h1>
+    <p class="hero-sub">Understand how computers and AI work — the benefits, the risks, and your rights.</p>
+    <p class="hero-sub-en">The knowledge — and the choice — stays with the village.</p>
+    <div class="hero-cta">
+      <a href="/learn" class="btn btn-primary">🧠 Start learning</a>
+      <a href="/catalogue" class="btn btn-ghost">📚 Browse all resources</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">What you'll find here</h2>
+    <div class="section-grid">
+      <% sections.forEach(function(s){ %>
+        <a class="big-card" href="<%= s.href %>">
+          <span class="big-card-icon" aria-hidden="true"><%= s.icon %></span>
+          <span class="big-card-title"><%= s.title %></span>
+          <span class="big-card-desc"><%= s.desc %></span>
+        </a>
+      <% }); %>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Featured booklets</h2>
+    <div class="card-grid">
+      <% featured.forEach(function(item){ %>
+        <%- include('partials/resource-card', { item: item }) %>
+      <% }); %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

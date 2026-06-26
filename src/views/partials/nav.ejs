@@ -1,0 +1,12 @@
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Loktech home">
+    <span class="brand-mark">Lok<span class="brand-accent">tech</span></span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/learn"     class="<%= path === '/learn' ? 'active' : '' %>">🧠 Learn</a>
+    <a href="/impact"    class="<%= path === '/impact' ? 'active' : '' %>">⚖️ Impact</a>
+    <a href="/news"      class="<%= path === '/news' ? 'active' : '' %>">🌍 News</a>
+    <a href="/catalogue" class="<%= path.indexOf('/catalogue') === 0 ? 'active' : '' %>">📚 Catalogue</a>
+    <a href="/legacy/index.html">🗂️ Original site</a>
+  </nav>
+</header>

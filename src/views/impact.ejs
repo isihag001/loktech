@@ -1,0 +1,37 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main" class="page">
+  <h1 class="page-title">AI's Impact</h1>
+  <p class="page-sub">How AI is changing the world — see both sides: the benefits and the harms.</p>
+
+  <section class="impact-block impact-block--good">
+    <h2 class="impact-head">✅ Benefits</h2>
+    <div class="impact-grid">
+      <% benefits.forEach(function(b){ %>
+        <div class="impact-card">
+          <span class="impact-icon" aria-hidden="true"><%= b.icon %></span>
+          <h3 class="impact-title"><%= b.title %></h3>
+          <p class="impact-desc"><%= b.desc %></p>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <section class="impact-block impact-block--bad">
+    <h2 class="impact-head">⚠️ Harms</h2>
+    <div class="impact-grid">
+      <% harms.forEach(function(h){ %>
+        <div class="impact-card">
+          <span class="impact-icon" aria-hidden="true"><%= h.icon %></span>
+          <h3 class="impact-title"><%= h.title %></h3>
+          <p class="impact-desc"><%= h.desc %></p>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <p class="page-note">For a deeper look, read the <a href="/catalogue?type=booklet">booklets</a>.</p>
+</main>
+
+<%- include('partials/footer') %>

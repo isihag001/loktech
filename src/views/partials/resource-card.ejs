@@ -1,0 +1,19 @@
+<%
+  var typeMeta = TYPES[item.type];
+  var ready = item.status === 'ready';
+%>
+<<%= ready ? 'a' : 'div' %>
+  class="res-card <%= ready ? '' : 'res-card--soon' %>"
+  <% if (ready) { %>href="<%= item.href %>"<% } %>>
+  <div class="res-card-img">
+    <img src="<%= item.img %>" alt="" loading="lazy">
+    <span class="res-card-type"><%= typeMeta.icon %> <%= typeMeta.label %></span>
+    <% if (item.lang) { %><span class="res-card-lang"><%= item.lang %></span><% } %>
+    <% if (!ready) { %><span class="res-card-soon">Coming soon</span><% } %>
+  </div>
+  <div class="res-card-body">
+    <h3 class="res-card-title"><%= item.title %></h3>
+    <p class="res-card-desc"><%= item.desc %></p>
+    <% if (ready) { %><span class="res-card-go">Open →</span><% } %>
+  </div>
+</<%= ready ? 'a' : 'div' %>>

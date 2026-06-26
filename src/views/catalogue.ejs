@@ -1,0 +1,28 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main" class="page">
+  <h1 class="page-title">All Resources</h1>
+  <p class="page-sub">Booklets, notebooks and questionnaires in one place.</p>
+
+  <div class="filter-row" role="tablist" aria-label="Filter by type">
+    <a class="chip <%= !activeType ? 'chip--on' : '' %>" href="/catalogue">All</a>
+    <% types.forEach(function(t){ %>
+      <a class="chip <%= activeType === t.key ? 'chip--on' : '' %>" href="/catalogue?type=<%= t.key %>">
+        <%= t.icon %> <%= t.label %>
+      </a>
+    <% }); %>
+  </div>
+
+  <div class="card-grid">
+    <% items.forEach(function(item){ %>
+      <%- include('partials/resource-card', { item: item }) %>
+    <% }); %>
+  </div>
+
+  <% if (items.length === 0) { %>
+    <p class="empty">No resources of this type yet.</p>
+  <% } %>
+</main>
+
+<%- include('partials/footer') %>

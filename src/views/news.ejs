@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<main id="main" class="page">
+  <h1 class="page-title">Critical & Participatory AI News</h1>
+  <p class="page-sub">Updates on responsible, critical and community-led AI from around the world.</p>
+
+  <ul class="news-list">
+    <% updates.forEach(function(u){ %>
+      <li class="news-item">
+        <div class="news-top">
+          <span class="news-date"><%= u.date %></span>
+          <span class="news-region"><%= u.region %></span>
+        </div>
+        <h2 class="news-title">
+          <% if (u.url) { %>
+            <a href="<%= u.url %>" target="_blank" rel="noopener"><%= u.title %></a>
+          <% } else { %>
+            <%= u.title %>
+          <% } %>
+        </h2>
+        <p class="news-desc"><%= u.desc %></p>
+        <p class="news-source">Source: <%= u.source %></p>
+      </li>
+    <% }); %>
+  </ul>
+</main>
+
+<%- include('partials/footer') %>
