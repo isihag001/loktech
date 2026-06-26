@@ -1,0 +1,19 @@
+{
+  "name": "loktech",
+  "version": "0.1.0",
+  "description": "Loktech — a one-stop, accessibility-first repository of community AI-literacy resources (booklets, notebooks, questionnaires) for Marwari-speaking villages. Part of the RAIL participatory framework.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

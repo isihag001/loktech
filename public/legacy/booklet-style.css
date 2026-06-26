@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    /* Light Mode - Warm Paper Theme */
+    --bg-color: #FAF8F5;
+    --bg-secondary: #F5F2ED;
+    --text-color: #2D2A26;
+    --text-muted: #6B6560;
+    --accent-color: #C45C26;
+    --secondary-accent: #1A5F5A;
+    --card-bg: rgba(255, 252, 248, 0.85);
+    --card-border: rgba(45, 42, 38, 0.12);
+    --font-hindi: 'Noto Sans Devanagari', sans-serif;
+    --font-english: 'Inter', sans-serif;
+    --font-heading: 'Rajdhani', sans-serif;
+    
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    
+    --glass-bg: rgba(255, 252, 248, 0.7);
+    --glass-border: rgba(45, 42, 38, 0.1);
+    --glass-blur: 8px;
+    
+    /* Shadow for light mode */
+    --shadow-soft: 0 4px 20px rgba(45, 42, 38, 0.08);
+    --shadow-hover: 0 8px 30px rgba(45, 42, 38, 0.12);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(196, 92, 38, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(26, 95, 90, 0.04) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: var(--font-hindi);
+    line-height: 1.8;
+    font-size: 1.1rem;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    line-height: 1.3;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-top: var(--spacing-lg);
+    border-bottom: 2px solid var(--card-border);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-top: var(--spacing-md);
+}
+
+h4 {
+    font-size: 1.25rem;
+    color: var(--secondary-accent);
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 300;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-accent);
+    text-decoration: underline;
+}
+
+/* Layout */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-md) 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--shadow-soft);
+}
+
+.blog-meta {
+    font-family: var(--font-english);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.blog-meta span strong {
+    color: var(--accent-color);
+}
+
+/* TOC */
+.toc-container {
+    background: var(--card-bg) !important;
+    padding: 2rem !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--card-border) !important;
+    margin-bottom: var(--spacing-lg) !important;
+    backdrop-filter: blur(5px);
+}
+
+.toc-container h3 {
+    margin-top: 0;
+    color: var(--accent-color) !important;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.toc-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.toc-container li {
+    margin-bottom: 0.8rem;
+}
+
+.toc-container a {
+    color: var(--text-color);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: block;
+}
+
+.toc-container a:hover {
+    color: var(--accent-color);
+    padding-left: 10px;
+}
+
+/* Images & Figures */
+figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* Cards (Content Boxes) */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin: 2rem 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(4px);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-color);
+}
+
+/* Lists */
+ul, ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-hover);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    transform: translateY(-5px);
+    background: var(--secondary-accent);
+    box-shadow: 0 0 20px rgba(26, 95, 90, 0.4);
+}
+
+/* Footer */
+footer {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* QR Code Section */
+.qr-code-container {
+    text-align: center;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-soft);
+}
+
+.qr-code-img {
+    max-width: 200px;
+    height: auto;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--radius-md);
+    padding: 5px;
+    background: #fff;
+    transition: transform 0.3s ease;
+}
+
+.qr-code-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(196, 92, 38, 0.2);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+}
