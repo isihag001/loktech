@@ -9,7 +9,7 @@
     <a class="chip <%= !activeType ? 'chip--on' : '' %>" href="/catalogue">All</a>
     <% types.forEach(function(t){ %>
       <a class="chip <%= activeType === t.key ? 'chip--on' : '' %>" href="/catalogue?type=<%= t.key %>">
-        <%= t.icon %> <%= t.label %>
+        <%= t.label %>
       </a>
     <% }); %>
   </div>

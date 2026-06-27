@@ -1,5 +1,5 @@
 /**
- * "Critical AI & Participatory AI — World News / Updates".
+ * "Critical AI and Participatory AI: World News / Updates".
  *
  * A curated, easy-to-update list of developments in responsible, critical and
  * participatory AI from around the world. Add a new update by adding an object
@@ -22,7 +22,7 @@ const updates = [
     date: '2025-08-01',
     region: 'Africa',
     title: 'Masakhane: community-built translation for 30+ African languages',
-    desc: 'African communities built their own translation tools — a model example of participatory AI.',
+    desc: 'African communities built their own translation tools, a model example of participatory AI.',
     source: 'Masakhane / EMNLP',
     url: ''
   },

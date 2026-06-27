@@ -7,7 +7,7 @@
   <% if (ready) { %>href="<%= item.href %>"<% } %>>
   <div class="res-card-img">
     <img src="<%= item.img %>" alt="" loading="lazy">
-    <span class="res-card-type"><%= typeMeta.icon %> <%= typeMeta.label %></span>
+    <span class="res-card-type"><%= typeMeta.label %></span>
     <% if (item.lang) { %><span class="res-card-lang"><%= item.lang %></span><% } %>
     <% if (!ready) { %><span class="res-card-soon">Coming soon</span><% } %>
   </div>

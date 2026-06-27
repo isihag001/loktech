@@ -9,7 +9,6 @@
     <% track.forEach(function(m){ %>
       <li class="track-step <%= m.status === 'ready' ? '' : 'track-step--soon' %>">
         <span class="track-num"><%= m.n %></span>
-        <span class="track-icon" aria-hidden="true"><%= m.icon %></span>
         <span class="track-body">
           <span class="track-title"><%= m.title %></span>
           <span class="track-desc"><%= m.desc %></span>

@@ -22,19 +22,19 @@
  */
 
 const TYPES = {
-  booklet: { label: 'Booklet', icon: '📖' },
-  notebook: { label: 'Jupyter Notebook', icon: '💻' },
-  questionnaire: { label: 'Questionnaire', icon: '📝' },
-  workshop: { label: 'Workshop', icon: '🤝' },
-  article: { label: 'Article', icon: '📄' }
+  booklet: { label: 'Booklet' },
+  notebook: { label: 'Jupyter Notebook' },
+  questionnaire: { label: 'Questionnaire' },
+  workshop: { label: 'Workshop' },
+  article: { label: 'Article' }
 };
 
 const items = [
-  // ---- Existing, preserved booklets (DO NOT EDIT — served from /legacy) ----
+  // ---- Existing, preserved booklets (DO NOT EDIT, served from /legacy) ----
   {
     id: 'booklet-1',
     type: 'booklet',
-    title: 'Booklet 1 — AI for Our Village (A Village Guide)',
+    title: 'Booklet 1: AI for Our Village (A Village Guide)',
     desc: 'The basics of AI for villages, its impact, and a community toolkit. (Original, in Marwari.)',
     img: '/legacy/images/img-001.png',
     href: '/legacy/booklet1/booklet1.html',
@@ -45,7 +45,7 @@ const items = [
   {
     id: 'booklet-2',
     type: 'booklet',
-    title: 'Booklet 2 — Deeper Topics & Practice',
+    title: 'Booklet 2: Deeper Topics and Practice',
     desc: 'Deeper themes and practical use. (Original, in Marwari.)',
     img: '/legacy/images/img-200.png',
     href: '/legacy/booklet2/booklet2.html',
@@ -58,8 +58,8 @@ const items = [
   {
     id: 'booklet-computer-basics',
     type: 'booklet',
-    title: 'Booklet 3 — How a Computer Works (from the ground up)',
-    desc: 'From electricity and buttons to chips, memory and programs — explained in plain language.',
+    title: 'Booklet 3: How a Computer Works (from the ground up)',
+    desc: 'From electricity and buttons to chips, memory and programs, explained in plain language.',
     img: '/legacy/images/img-015.png',
     href: '/catalogue',
     status: 'soon'
@@ -67,7 +67,7 @@ const items = [
   {
     id: 'booklet-how-ai-learns',
     type: 'booklet',
-    title: 'Booklet 4 — How AI Learns (data, training, models)',
+    title: 'Booklet 4: How AI Learns (data, training, models)',
     desc: 'Understand every part of AI in depth: data, training, and models.',
     img: '/legacy/images/img-009.png',
     href: '/catalogue',
@@ -76,8 +76,8 @@ const items = [
   {
     id: 'notebook-intro',
     type: 'notebook',
-    title: 'Notebook 1 — Try AI with Your Own Hands',
-    desc: 'A simple Jupyter notebook — run it yourself to see how a computer learns patterns.',
+    title: 'Notebook 1: Try AI with Your Own Hands',
+    desc: 'A simple Jupyter notebook you can run yourself to see how a computer learns patterns.',
     img: '/legacy/images/img-011.png',
     href: '/catalogue',
     status: 'soon'
@@ -85,7 +85,7 @@ const items = [
   {
     id: 'questionnaire-bioregional',
     type: 'questionnaire',
-    title: 'Questionnaire — Bioregional, Community & Location-specific',
+    title: 'Questionnaire: Bioregional, Community and Location-specific',
     desc: 'Co-designed with native speakers, language experts and bioregionalism practitioners. (In progress.)',
     img: '/legacy/images/img-008.png',
     href: '/catalogue',
@@ -111,25 +111,21 @@ module.exports = {
     return [
       {
         href: '/learn',
-        icon: '🧠',
-        title: 'Understand Computers & AI',
-        desc: 'How a computer works and how AI learns — every part, in depth.'
+        title: 'Understand Computers and AI',
+        desc: 'How a computer works and how AI learns, every part, in depth.'
       },
       {
         href: '/impact',
-        icon: '⚖️',
-        title: "AI's Impact — Benefits & Harms",
+        title: "AI's Impact: Benefits and Harms",
         desc: 'How AI is changing the world, and the good and bad it brings.'
       },
       {
         href: '/news',
-        icon: '🌍',
-        title: 'Critical & Participatory AI News',
+        title: 'Critical and Participatory AI News',
         desc: 'The latest on responsible and community-led AI from around the world.'
       },
       {
         href: '/catalogue',
-        icon: '📚',
         title: 'All Resources (Catalogue)',
         desc: 'Every booklet, notebook and questionnaire in one place.'
       }
