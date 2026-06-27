@@ -5,6 +5,9 @@
  * (e.g. Hostinger) straight from a GitHub repo: `npm install` then `npm start`.
  * It binds to the host-provided port and renders content from a data layer so
  * adding a new resource means adding one entry in src/data — not writing HTML.
+ *
+ * All visible text comes from src/i18n/translations.csv via res.locals.t, so
+ * the whole site can be translated by editing that one sheet.
  */
 const path = require('path');
 const express = require('express');
@@ -13,6 +16,7 @@ const catalogue = require('./src/data/catalogue');
 const learning = require('./src/data/learning');
 const impact = require('./src/data/impact');
 const news = require('./src/data/news');
+const i18n = require('./src/i18n');
 
 const app = express();
 
@@ -27,22 +31,47 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1h' }));
 // Make site-wide data available to every template.
 const SITE = {
   name: 'Loktech',
-  tagline: 'AI for Our Village',
-  taglineEn: 'AI knowledge, owned by the village',
   year: new Date().getFullYear()
 };
 
+// Read the chosen language from a tiny cookie (no dependency needed).
+function readLangCookie(req) {
+  const header = req.headers.cookie;
+  if (!header) return null;
+  const match = header.split(';').map((c) => c.trim()).find((c) => c.startsWith('lang='));
+  if (!match) return null;
+  const value = decodeURIComponent(match.slice('lang='.length));
+  return i18n.isValidLang(value) ? value : null;
+}
+
+// Per-request locals: current language + a bound t() helper for templates.
 app.use((req, res, next) => {
+  const lang = readLangCookie(req) || i18n.DEFAULT_LANG;
   res.locals.site = SITE;
   res.locals.path = req.path;
-  res.locals.TYPES = catalogue.TYPES;
+  res.locals.lang = lang;
+  res.locals.langs = i18n.availableLanguages();
+  res.locals.returnUrl = encodeURIComponent(req.originalUrl);
+  res.locals.t = (key, vars) => i18n.t(key, lang, vars);
   next();
+});
+
+// Switch language: set the cookie for a year, then return where the reader was.
+app.get('/lang/:code', (req, res) => {
+  const code = req.params.code;
+  if (i18n.isValidLang(code)) {
+    res.setHeader('Set-Cookie', `lang=${code}; Path=/; Max-Age=31536000; SameSite=Lax`);
+  }
+  // Only honour same-site relative return paths (avoid open redirects).
+  let back = req.query.r || '/';
+  if (typeof back !== 'string' || !back.startsWith('/') || back.startsWith('//')) back = '/';
+  res.redirect(back);
 });
 
 // Routes
 app.get('/', (req, res) => {
   res.render('home', {
-    title: 'Loktech',
+    titleKey: 'page.home',
     featured: catalogue.featured(),
     sections: catalogue.sections()
   });
@@ -51,7 +80,7 @@ app.get('/', (req, res) => {
 app.get('/catalogue', (req, res) => {
   const type = req.query.type || null;
   res.render('catalogue', {
-    title: 'सगळा संसाधन / Catalogue',
+    titleKey: 'page.catalogue',
     items: catalogue.all(type),
     types: catalogue.types(),
     activeType: type
@@ -60,14 +89,14 @@ app.get('/catalogue', (req, res) => {
 
 app.get('/learn', (req, res) => {
   res.render('learn', {
-    title: 'कंप्यूटर अर AI ने समझो / Learn',
+    titleKey: 'page.learn',
     track: learning.track()
   });
 });
 
 app.get('/impact', (req, res) => {
   res.render('impact', {
-    title: 'AI रो असर / Impact',
+    titleKey: 'page.impact',
     benefits: impact.benefits(),
     harms: impact.harms()
   });
@@ -75,18 +104,18 @@ app.get('/impact', (req, res) => {
 
 app.get('/news', (req, res) => {
   res.render('news', {
-    title: 'क्रिटिकल अर पार्टिसिपेटरी AI खबरां / Critical & Participatory AI News',
+    titleKey: 'page.news',
     updates: news.all()
   });
 });
 
 app.get('/about', (req, res) => {
-  res.render('about', { title: 'आ साइट रे बारे में / About' });
+  res.render('about', { titleKey: 'page.about' });
 });
 
 // 404
 app.use((req, res) => {
-  res.status(404).render('404', { title: 'पानो कोनी मिल्यो / Not found' });
+  res.status(404).render('404', { titleKey: 'page.404' });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -1,5 +1,4 @@
 <%
-  var typeMeta = TYPES[item.type];
   var ready = item.status === 'ready';
 %>
 <<%= ready ? 'a' : 'div' %>
@@ -7,13 +6,13 @@
   <% if (ready) { %>href="<%= item.href %>"<% } %>>
   <div class="res-card-img">
     <img src="<%= item.img %>" alt="" loading="lazy">
-    <span class="res-card-type"><%= typeMeta.label %></span>
-    <% if (item.lang) { %><span class="res-card-lang"><%= item.lang %></span><% } %>
-    <% if (!ready) { %><span class="res-card-soon">Coming soon</span><% } %>
+    <span class="res-card-type"><%= t('type.' + item.type) %></span>
+    <% if (item.langKey) { %><span class="res-card-lang"><%= t(item.langKey) %></span><% } %>
+    <% if (!ready) { %><span class="res-card-soon"><%= t('card.soon') %></span><% } %>
   </div>
   <div class="res-card-body">
-    <h3 class="res-card-title"><%= item.title %></h3>
-    <p class="res-card-desc"><%= item.desc %></p>
-    <% if (ready) { %><span class="res-card-go">Open →</span><% } %>
+    <h3 class="res-card-title"><%= t(item.titleKey) %></h3>
+    <p class="res-card-desc"><%= t(item.descKey) %></p>
+    <% if (ready) { %><span class="res-card-go"><%= t('card.open') %> →</span><% } %>
   </div>
 </<%= ready ? 'a' : 'div' %>>

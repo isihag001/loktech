@@ -2,31 +2,31 @@
  * The Loktech catalogue.
  *
  * Every resource in the repository is one object in `items`. To add a new
- * booklet / notebook / questionnaire, add an entry here. Nothing else needs to
- * change. The two existing booklets point at the preserved original site under
- * /legacy and are displayed exactly as they were authored (in Marwari).
+ * booklet / notebook / questionnaire, add an entry here and add its title/desc
+ * rows to src/i18n/translations.csv. The two existing booklets point at the
+ * preserved original site under /legacy and are displayed exactly as authored.
  *
- * NOTE: The new site is in English for now; it will be translated to Marwari
- * and Hindi later. The original booklets are NOT translated or edited.
+ * All visible text is referenced by a translation key (titleKey, descKey, ...)
+ * and resolved at render time via t(); the words themselves live in the CSV.
  *
  * Fields:
  *   id        unique slug
  *   type      one of TYPES (booklet | notebook | questionnaire | workshop | article)
- *   title     resource title
- *   desc      one-line plain description
+ *   titleKey  translation key for the resource title
+ *   descKey   translation key for the one-line description
  *   img       thumbnail under /public (legacy images are reused)
  *   href      where the resource opens (a legacy page, a route, or a download)
  *   status    'ready' (clickable) | 'soon' (planned, shown greyed with a label)
- *   lang      optional content-language tag, e.g. 'Marwari' for the originals
+ *   langKey   optional content-language badge key, e.g. for the Marwari originals
  *   featured  optional: show on the home page
  */
 
 const TYPES = {
-  booklet: { label: 'Booklet' },
-  notebook: { label: 'Jupyter Notebook' },
-  questionnaire: { label: 'Questionnaire' },
-  workshop: { label: 'Workshop' },
-  article: { label: 'Article' }
+  booklet: { labelKey: 'type.booklet' },
+  notebook: { labelKey: 'type.notebook' },
+  questionnaire: { labelKey: 'type.questionnaire' },
+  workshop: { labelKey: 'type.workshop' },
+  article: { labelKey: 'type.article' }
 };
 
 const items = [
@@ -34,23 +34,23 @@ const items = [
   {
     id: 'booklet-1',
     type: 'booklet',
-    title: 'Booklet 1: AI for Our Village (A Village Guide)',
-    desc: 'The basics of AI for villages, its impact, and a community toolkit. (Original, in Marwari.)',
+    titleKey: 'cat.booklet-1.title',
+    descKey: 'cat.booklet-1.desc',
     img: '/legacy/images/img-001.png',
     href: '/legacy/booklet1/booklet1.html',
     status: 'ready',
-    lang: 'Marwari',
+    langKey: 'lang.marwari',
     featured: true
   },
   {
     id: 'booklet-2',
     type: 'booklet',
-    title: 'Booklet 2: Deeper Topics and Practice',
-    desc: 'Deeper themes and practical use. (Original, in Marwari.)',
+    titleKey: 'cat.booklet-2.title',
+    descKey: 'cat.booklet-2.desc',
     img: '/legacy/images/img-200.png',
     href: '/legacy/booklet2/booklet2.html',
     status: 'ready',
-    lang: 'Marwari',
+    langKey: 'lang.marwari',
     featured: true
   },
 
@@ -58,8 +58,8 @@ const items = [
   {
     id: 'booklet-computer-basics',
     type: 'booklet',
-    title: 'Booklet 3: How a Computer Works (from the ground up)',
-    desc: 'From electricity and buttons to chips, memory and programs, explained in plain language.',
+    titleKey: 'cat.booklet-computer-basics.title',
+    descKey: 'cat.booklet-computer-basics.desc',
     img: '/legacy/images/img-015.png',
     href: '/catalogue',
     status: 'soon'
@@ -67,8 +67,8 @@ const items = [
   {
     id: 'booklet-how-ai-learns',
     type: 'booklet',
-    title: 'Booklet 4: How AI Learns (data, training, models)',
-    desc: 'Understand every part of AI in depth: data, training, and models.',
+    titleKey: 'cat.booklet-how-ai-learns.title',
+    descKey: 'cat.booklet-how-ai-learns.desc',
     img: '/legacy/images/img-009.png',
     href: '/catalogue',
     status: 'soon'
@@ -76,8 +76,8 @@ const items = [
   {
     id: 'notebook-intro',
     type: 'notebook',
-    title: 'Notebook 1: Try AI with Your Own Hands',
-    desc: 'A simple Jupyter notebook you can run yourself to see how a computer learns patterns.',
+    titleKey: 'cat.notebook-intro.title',
+    descKey: 'cat.notebook-intro.desc',
     img: '/legacy/images/img-011.png',
     href: '/catalogue',
     status: 'soon'
@@ -85,8 +85,8 @@ const items = [
   {
     id: 'questionnaire-bioregional',
     type: 'questionnaire',
-    title: 'Questionnaire: Bioregional, Community and Location-specific',
-    desc: 'Co-designed with native speakers, language experts and bioregionalism practitioners. (In progress.)',
+    titleKey: 'cat.questionnaire-bioregional.title',
+    descKey: 'cat.questionnaire-bioregional.desc',
     img: '/legacy/images/img-008.png',
     href: '/catalogue',
     status: 'soon'
@@ -109,26 +109,10 @@ module.exports = {
   },
   sections() {
     return [
-      {
-        href: '/learn',
-        title: 'Understand Computers and AI',
-        desc: 'How a computer works and how AI learns, every part, in depth.'
-      },
-      {
-        href: '/impact',
-        title: "AI's Impact: Benefits and Harms",
-        desc: 'How AI is changing the world, and the good and bad it brings.'
-      },
-      {
-        href: '/news',
-        title: 'Critical and Participatory AI News',
-        desc: 'The latest on responsible and community-led AI from around the world.'
-      },
-      {
-        href: '/catalogue',
-        title: 'All Resources (Catalogue)',
-        desc: 'Every booklet, notebook and questionnaire in one place.'
-      }
+      { href: '/learn', titleKey: 'home.section.learn.title', descKey: 'home.section.learn.desc' },
+      { href: '/impact', titleKey: 'home.section.impact.title', descKey: 'home.section.impact.desc' },
+      { href: '/news', titleKey: 'home.section.news.title', descKey: 'home.section.news.desc' },
+      { href: '/catalogue', titleKey: 'home.section.catalogue.title', descKey: 'home.section.catalogue.desc' }
     ];
   }
 };

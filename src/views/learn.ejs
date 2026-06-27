@@ -2,18 +2,18 @@
 <%- include('partials/nav') %>
 
 <main id="main" class="page">
-  <h1 class="page-title">Understand Computers & AI</h1>
-  <p class="page-sub">A ground-up path: from how a computer works to how AI learns. Take it one step at a time.</p>
+  <h1 class="page-title"><%= t('learn.title') %></h1>
+  <p class="page-sub"><%= t('learn.sub') %></p>
 
   <ol class="track">
     <% track.forEach(function(m){ %>
       <li class="track-step <%= m.status === 'ready' ? '' : 'track-step--soon' %>">
         <span class="track-num"><%= m.n %></span>
         <span class="track-body">
-          <span class="track-title"><%= m.title %></span>
-          <span class="track-desc"><%= m.desc %></span>
+          <span class="track-title"><%= t(m.titleKey) %></span>
+          <span class="track-desc"><%= t(m.descKey) %></span>
         </span>
-        <% if (m.status !== 'ready') { %><span class="track-badge">Coming soon</span><% } %>
+        <% if (m.status !== 'ready') { %><span class="track-badge"><%= t('card.soon') %></span><% } %>
       </li>
     <% }); %>
   </ol>

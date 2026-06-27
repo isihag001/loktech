@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= lang %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %> · <%= site.name %></title>
+  <title><%= t(titleKey) %> · <%= site.name %></title>
   <meta name="description" content="Loktech: AI knowledge owned by the village. Booklets, notebooks and resources.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Rajdhani:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main"><%= t('a11y.skip') %></a>
 
-  <!-- Accessibility bar: text size controls for low-vision / outdoor reading -->
+  <!-- Accessibility bar: language + text size controls for outdoor reading -->
   <div class="a11y-bar" role="region" aria-label="Accessibility controls">
-    <span class="a11y-label">Text size</span>
-    <button type="button" class="a11y-btn" data-text="dec" aria-label="Decrease text size">A−</button>
-    <button type="button" class="a11y-btn" data-text="reset" aria-label="Reset text size">A</button>
-    <button type="button" class="a11y-btn" data-text="inc" aria-label="Increase text size">A+</button>
+    <% if (langs.length > 1) { %>
+      <span class="a11y-group">
+        <span class="a11y-label"><%= t('a11y.language') %></span>
+        <% langs.forEach(function(l){ %>
+          <a class="a11y-btn <%= l.code === lang ? 'a11y-btn--on' : '' %>"
+             href="/lang/<%= l.code %>?r=<%= returnUrl %>"
+             lang="<%= l.code %>"><%= l.native %></a>
+        <% }); %>
+      </span>
+    <% } %>
+    <span class="a11y-group">
+      <span class="a11y-label"><%= t('a11y.textsize') %></span>
+      <button type="button" class="a11y-btn" data-text="dec" aria-label="<%= t('a11y.dec') %>">A−</button>
+      <button type="button" class="a11y-btn" data-text="reset" aria-label="<%= t('a11y.reset') %>">A</button>
+      <button type="button" class="a11y-btn" data-text="inc" aria-label="<%= t('a11y.inc') %>">A+</button>
+    </span>
   </div>

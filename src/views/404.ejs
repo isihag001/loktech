@@ -2,9 +2,9 @@
 <%- include('partials/nav') %>
 
 <main id="main" class="page page--center">
-  <h1 class="page-title">Page not found</h1>
-  <p class="page-sub">The page you're looking for isn't here.</p>
-  <a href="/" class="btn btn-primary">← Back to home</a>
+  <h1 class="page-title"><%= t('nf.title') %></h1>
+  <p class="page-sub"><%= t('nf.sub') %></p>
+  <a href="/" class="btn btn-primary">← <%= t('nf.back') %></a>
 </main>
 
 <%- include('partials/footer') %>

@@ -2,34 +2,34 @@
 <%- include('partials/nav') %>
 
 <main id="main" class="page">
-  <h1 class="page-title">AI's Impact</h1>
-  <p class="page-sub">How AI is changing the world. See both sides: the benefits and the harms.</p>
+  <h1 class="page-title"><%= t('impact.title') %></h1>
+  <p class="page-sub"><%= t('impact.sub') %></p>
 
   <section class="impact-block impact-block--good">
-    <h2 class="impact-head">Benefits</h2>
+    <h2 class="impact-head"><%= t('impact.benefits.head') %></h2>
     <div class="impact-grid">
       <% benefits.forEach(function(b){ %>
         <div class="impact-card">
-          <h3 class="impact-title"><%= b.title %></h3>
-          <p class="impact-desc"><%= b.desc %></p>
+          <h3 class="impact-title"><%= t(b.titleKey) %></h3>
+          <p class="impact-desc"><%= t(b.descKey) %></p>
         </div>
       <% }); %>
     </div>
   </section>
 
   <section class="impact-block impact-block--bad">
-    <h2 class="impact-head">Harms</h2>
+    <h2 class="impact-head"><%= t('impact.harms.head') %></h2>
     <div class="impact-grid">
       <% harms.forEach(function(h){ %>
         <div class="impact-card">
-          <h3 class="impact-title"><%= h.title %></h3>
-          <p class="impact-desc"><%= h.desc %></p>
+          <h3 class="impact-title"><%= t(h.titleKey) %></h3>
+          <p class="impact-desc"><%= t(h.descKey) %></p>
         </div>
       <% }); %>
     </div>
   </section>
 
-  <p class="page-note">For a deeper look, read the <a href="/catalogue?type=booklet">booklets</a>.</p>
+  <p class="page-note"><%- t('impact.note') %></p>
 </main>
 
 <%- include('partials/footer') %>

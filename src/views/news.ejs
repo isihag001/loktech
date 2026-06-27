@@ -2,25 +2,25 @@
 <%- include('partials/nav') %>
 
 <main id="main" class="page">
-  <h1 class="page-title">Critical & Participatory AI News</h1>
-  <p class="page-sub">Updates on responsible, critical and community-led AI from around the world.</p>
+  <h1 class="page-title"><%= t('news.title') %></h1>
+  <p class="page-sub"><%= t('news.sub') %></p>
 
   <ul class="news-list">
     <% updates.forEach(function(u){ %>
       <li class="news-item">
         <div class="news-top">
           <span class="news-date"><%= u.date %></span>
-          <span class="news-region"><%= u.region %></span>
+          <span class="news-region"><%= t(u.regionKey) %></span>
         </div>
         <h2 class="news-title">
           <% if (u.url) { %>
-            <a href="<%= u.url %>" target="_blank" rel="noopener"><%= u.title %></a>
+            <a href="<%= u.url %>" target="_blank" rel="noopener"><%= t(u.titleKey) %></a>
           <% } else { %>
-            <%= u.title %>
+            <%= t(u.titleKey) %>
           <% } %>
         </h2>
-        <p class="news-desc"><%= u.desc %></p>
-        <p class="news-source">Source: <%= u.source %></p>
+        <p class="news-desc"><%= t(u.descKey) %></p>
+        <p class="news-source"><%= t('news.source') %> <%= u.source %></p>
       </li>
     <% }); %>
   </ul>
